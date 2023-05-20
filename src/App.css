@@ -1,38 +1,377 @@
+.main-app-container *{
+  padding: 0px;
+  margin: 0px;
+}
+
 .App {
+  --background-color: #282c34;
+  --border-color: hsl(0, 0%, 31%);
+  --border-transparent: hsla(0. 0%. 31%, 0);
+  --font-color-mild: darkgrey;
   text-align: center;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.main-app-container {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 520px;
+  height: 90vh;
   }
+
+.color-wheel {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  border-radius: 50%;
+  background: conic-gradient(
+    #f22, 
+    #fb0,
+    #fe0, 
+    #7c3, 
+    #0a4, 
+    #098, 
+    #0bd, 
+    #0af, 
+    #09f, 
+    #44b, 
+    #63b, 
+    #f06, 
+    #f22
+  );
+  margin: 0 auto;
+  margin-bottom: 25px;
+  opacity: 0.6;
+  transition: opacity 0.3s;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.color-wheel:hover {
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.color-wheel-center {
+  pointer-events: none;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: var(--background-color);
+  position: relative;
+  top: 50px;
+  left: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.color-selector {
+  margin: 6px 0px;
+  padding: 18px 16px 14px 16px;
+  position: relative;
+}
+
+.color-selector-collapse,
+.palettes-collapse, 
+.conversions-collapse {
+  border: 5px groove hwb(0 28% 72%);
+  margin: 12px 0px;
+  position: relative;
+  transition-duration: 1s;
+}
+
+.color-selector-collapse::before, 
+.palettes-collapse::before,
+.conversions-collapse::before {
+  color: var(--font-color-mild);
+  padding: 0px 8px;
+  position: absolute;
+  top: -14px;
+  left: 14px;
+  background-color: var(--background-color);
+}
+
+.color-selector-collapse::before {
+  content: "color settings";
+}
+
+.palettes-collapse::before {
+  content: "palette settings";
+}
+
+.conversions-collapse::before {
+  content: "color conversions";
+}
+
+.collapse-btn {
+  position: absolute;
+  z-index: 10;
+  top: -14px;
+  right: 20px;
+  padding: 0px 8px;
+  color: var(--font-color-mild);
+  background-color: var(--background-color);
+}
+
+.collapse-btn:hover {
+  cursor: pointer;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.collapse-container {
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.palette {
+  margin: 8px 0px;
+  padding: 16px 16px 14px 16px;
+  position: relative;
 }
+
+.palettes-conv-container {
+  position: relative;
+  padding: 12px 16px 8px 16px;
+}
+
+.conv-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin: 4px;
+}
+
+.conv-container .copy-on-click {
+  -webkit-user-select: none;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  min-width: 70px;
+  margin: 6px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.conv-container .copy-on-click:hover {
+  cursor: pointer;
+  background-color: hsl(0, 0%, 35%);
+}
+
+.conv-container .copy-on-click:active {
+  background-color: hsl(0, 0%, 25%);
+}
+
+.copy-on-click .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  bottom: 42px;
+  background-color: hsl(0, 0%, 25%);
+  border: 1px solid hsl(0, 0%, 30%);
+  border-radius: 4px;
+  padding: 4px;
+  transition: 1s 0.5s;
+  opacity: 0;
+}
+
+.copy-on-click:active .tooltip-text {
+  visibility: visible;
+  transition: 0s 0s;
+  opacity: 1;
+}
+
+.conv-container .hsl {
+  width: 160px;
+}
+
+.conv-container .rgb {
+  width: 140px;
+}
+
+.conv-container p {
+  font-size: 15px;
+  color: var(--font-color-mild);
+}
+
+.conv-container-label {
+  margin: 0 auto;
+  width: 80px;
+  text-align: left;
+  color: var(--font-color-mild);
+}
+
+.main-color {
+  margin: 12px 0px 12px 0px;
+  padding: 6px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.disp-color, 
+.main-color{
+  box-sizing: border-box;
+  width: 100%;
+  height: 120px;
+}
+
+.palette-color {
+  width: 80px;
+  height: 80px;
+}
+
+.btn {
+  margin: 4px 2px;
+  padding: 2px 6px;
+  background-color: hsl(0, 0%, 22%);
+  border: 1px solid hsl(0, 0%, 40%);
+  border-radius: 4px;
+  color: var(--font-color-mild);
+}
+
+.btn:hover {
+  background-color: hsl(0, 0%, 30%);
+  border: 1px solid hsl(0, 0%, 50%);
+  box-shadow: 1px 1px 1px rgb(12, 12, 12);
+}
+
+.btn:active {
+  background-color: hsl(0, 0%, 15%);
+  border: 1px solid hsl(0, 0%, 25%);
+  box-shadow: none;
+}
+
+.btn-show-pal {
+  width: 100px;
+}
+
+.btn-show-colorwheel {
+  width: 120px;
+}
+
+.btn-hide-example {
+  width: 130px;
+}
+
+
+/******************************************************************************/
+/********************************** SLIDERS ***********************************/
+/******************************************************************************/
+
+input[type=range] {
+  -webkit-appearance: none; 
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+/* input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+} */
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -14px; /* Need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 20px;
+  width: 6px;
+  border-radius: 3px;
+  background: #a2a8a8;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+/* input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+} */
+
+/****************************** slider Track **********************************/
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #828282;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #4f4f4f;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
+/* input[type=range]::-ms-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+} */

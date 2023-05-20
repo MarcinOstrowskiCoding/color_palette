@@ -1,0 +1,123 @@
+.ex-body {
+    --main: hsl(0 50% 50%);
+    --light: hsl(0 100% 90%);
+    --mid-light: hsl(0 70% 70%);
+    --mid-dark: hsl(0 70% 30%);
+    --dark: hsl(0 100% 10%);
+    --second-main: hsl(0 50% 50%);
+    --second-light: hsl(0 100% 90%);
+    --second-mid-light: hsl(0 70% 70%);
+    --second-mid-dark: hsl(0 70% 30%);
+    --second-dark: hsl(0 100% 10%);
+    --alt-main: hsl(0 50% 50%);
+    --alt-light: hsl(0 100% 90%);
+    --alt-mid-light: hsl(0 70% 70%);
+    --alt-mid-dark: hsl(0 70% 30%);
+    --alt-dark: hsl(0 100% 10%);
+    width: 640px;
+    margin: 24px;
+    padding: 12px;
+    background-color: var(--light);
+    color: var(--dark);
+    text-align: center;
+}
+
+.ex-header {
+    height: 80px;
+    background-color: var(--mid-light);
+    display: flex;
+    justify-content: center;
+}
+
+.ex-header h1 {
+    color: var(--dark);
+}
+
+.ex-nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 2px;
+    padding: 0;
+    gap: 2px;
+}
+
+.ex-nav li {
+    flex-grow: 1;
+    height: 24px;
+    background-color: var(--second-mid-dark);
+    border: 1px solid var(--second-main);
+    color: var(--second-light);
+}
+
+.ex-columns {
+    display: flex;
+}
+
+.ex-column {
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    background-color: var(--light);
+}
+
+.ex-column .title-container {
+    margin: 2px;
+    flex-shrink: 0;
+    background-color: var(--mid-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ex-column h2 {
+    font-size: 18px;
+}
+
+.ex-subscribe {
+    margin: 0 auto;
+    width: 90%;
+    text-align: left;
+}
+
+.ex-subscribe span {
+    margin-left: 16px;
+}
+
+.ex-button {
+    display: inline;
+    margin-left: 6px;
+    padding: 1px 5px 1px 5px;
+    border: 1px solid var(--alt-mid-light);
+    background-color: var(--alt-mid-dark);
+    color: var(--alt-mid-light);
+}
+
+.ex-info {
+    display: flex;
+    gap: 12px;
+    margin: 12px;
+    text-align: left;
+}
+
+.ex-info span {
+    font-weight: 800;
+}
+
+
+.ex-footer ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: var(--second-mid-dark);
+    margin: 0;
+    padding: 0;
+}
+
+.ex-footer li {
+    padding: 0px 8px 0px 8px;
+    height: 24px;
+    color: var(--light);
+}
