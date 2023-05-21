@@ -26,7 +26,6 @@ function App() {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}>
       <div className='main-app-container'>
-      <p>{JSON.stringify(isMouseDown)}</p>
         <Settings 
           color={color}
           contrast={contrast}

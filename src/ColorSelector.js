@@ -1,13 +1,4 @@
-import { useState, useRef } from "react";
-
-// const reducer = (state, action) => {
-//     switch(action.type) {
-//       case "Increment":
-//         return state + 1;
-//       default:
-//         return state;
-//     }
-//   }
+import { useState } from "react";
 
 function Sliders({color, setColor }) {
     function handleInput(e, index) {
@@ -99,12 +90,9 @@ export function ColorSelector({color, setColor, showHidePalettes, isMouseDown })
 
 
 function ColorWheel({color, setColor, isMouseDown }) {
-    //const intervalRef = useRef(null);
-    const [coords, setCoords] = useState({x:50, y:300});
-    // const [count, setCount] = useState(0);
-    
-    function onMouseMove(e){
-        if (isMouseDown) {let newColor = [...color];
+    const [coords, setCoords] = useState({x:150, y:150});
+    function getHueFromWheel(e) {
+        let newColor = [...color];
         let newHue = calcHue(vecAB, vecAC);
         let parent = document.querySelector('.color-wheel');
         let element = parent.getBoundingClientRect();
@@ -112,19 +100,19 @@ function ColorWheel({color, setColor, isMouseDown }) {
         let elementY = Math.round(element.top);
         newColor[0] = newHue;
         setColor(newColor);
-        setCoords({x: e.clientX - elementX, y: e.clientY - elementY});}
-        // setCount((count) => count + 1);
+        setCoords({x: e.clientX - elementX, y: e.clientY - elementY});
     }
-    // function onMouseDown(e){
-    //     if (intervalRef.current) return;
-    //     intervalRef.current = setInterval(onHold, 50, e);        
-    // }
-    // function stopCounter() {
-    //     if (intervalRef.current) {
-    //       clearInterval(intervalRef.current);
-    //       intervalRef.current = null;
-    //     }
-    // };
+
+    function handleMouseMove(e) {
+        if (isMouseDown) {getHueFromWheel(e)};
+    }
+    function handleMouseDown(e) {
+        getHueFromWheel(e);
+    }
+    function handleMouseUp(e) {
+        getHueFromWheel(e);
+    }
+
     // setting ABC triangle to get Hue from AB AC angle degrees
     // A is circle center, B is mouse position, C is relative to A and B
     let a = {x:150, y:150};
@@ -175,23 +163,21 @@ function ColorWheel({color, setColor, isMouseDown }) {
     return (
         <>
         <div className="color-wheel"
-            onMouseMove={(e)=>onMouseMove(e)}
-            // onMouseUp={stopCounter}
-            // onMouseLeave={stopCounter}
+            onMouseMove={(e)=>handleMouseMove(e)}
+            onMouseDown={(e)=>handleMouseDown(e)}
+            onMouseUp={(e)=>handleMouseUp(e)}
             >
             <div className="color-wheel-center">
-                <p>hue:</p>
-                {/* <p>counter: {count}</p> */}
+                <p>color[0]: {color[0]}</p>
+                <p>calcHue {calcHue(vecAB, vecAC)}</p>
                 <p>coords: {`${a.x}, ${a.y}`}</p>
                 <p>coords: {`${b.x}, ${b.y}`}</p>
                 <p>coords: {`${c.x}, ${c.y}`}</p>
-                <p>{calcHue(vecAB, vecAC)}</p>
                 <div className="dot dot-monohrome"></div>
                 <div className="dot dot-complementary"></div>
                 <div className="dot dot-triadical"></div>
             </div>
         </div>
-                
         </>
     )
 }
