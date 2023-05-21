@@ -74,14 +74,15 @@ function DispColor({color, showHidePalettes }) {
     )
 }
 
-export function ColorSelector({color, setColor, showHidePalettes }) {
+export function ColorSelector({color, setColor, showHidePalettes, isMouseDown }) {
     return(
         <div className="color-selector">
             <div className="color-selector-container"
                 id="color-selector-container">
                 <ColorWheel
                     color={color}
-                    setColor={setColor}>
+                    setColor={setColor}
+                    isMouseDown={isMouseDown}>
                 </ColorWheel>
                 <DispColor 
                     color={color}
@@ -97,13 +98,13 @@ export function ColorSelector({color, setColor, showHidePalettes }) {
 }
 
 
-function ColorWheel({color, setColor }) {
-    const intervalRef = useRef(null);
+function ColorWheel({color, setColor, isMouseDown }) {
+    //const intervalRef = useRef(null);
     const [coords, setCoords] = useState({x:50, y:300});
     // const [count, setCount] = useState(0);
     
-    function onHold(e){
-        let newColor = [...color];
+    function onMouseMove(e){
+        if (isMouseDown) {let newColor = [...color];
         let newHue = calcHue(vecAB, vecAC);
         let parent = document.querySelector('.color-wheel');
         let element = parent.getBoundingClientRect();
@@ -111,19 +112,19 @@ function ColorWheel({color, setColor }) {
         let elementY = Math.round(element.top);
         newColor[0] = newHue;
         setColor(newColor);
-        setCoords({x: e.clientX - elementX, y: e.clientY - elementY});
+        setCoords({x: e.clientX - elementX, y: e.clientY - elementY});}
         // setCount((count) => count + 1);
     }
-    function onMouseDown(e){
-        if (intervalRef.current) return;
-        intervalRef.current = setInterval(onHold, 50, e);        
-    }
-    function stopCounter() {
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-          intervalRef.current = null;
-        }
-    };
+    // function onMouseDown(e){
+    //     if (intervalRef.current) return;
+    //     intervalRef.current = setInterval(onHold, 50, e);        
+    // }
+    // function stopCounter() {
+    //     if (intervalRef.current) {
+    //       clearInterval(intervalRef.current);
+    //       intervalRef.current = null;
+    //     }
+    // };
     // setting ABC triangle to get Hue from AB AC angle degrees
     // A is circle center, B is mouse position, C is relative to A and B
     let a = {x:150, y:150};
@@ -174,9 +175,10 @@ function ColorWheel({color, setColor }) {
     return (
         <>
         <div className="color-wheel"
-            onMouseDown={(e)=>onMouseDown(e)}
-            onMouseUp={stopCounter}
-            onMouseLeave={stopCounter}>
+            onMouseMove={(e)=>onMouseMove(e)}
+            // onMouseUp={stopCounter}
+            // onMouseLeave={stopCounter}
+            >
             <div className="color-wheel-center">
                 <p>hue:</p>
                 {/* <p>counter: {count}</p> */}

@@ -14,9 +14,19 @@ function App() {
   const [contrast, setContrast] = useState(80);
   const [palType, setPalType] = useState({name: 'monohromatic', hue: [0]});
   const [showHidePalettes, setSHPalettes] = useState('block');
+  const [isMouseDown, setIsMouseDown ] = useState(false);
+  function handleMouseDown() {
+    setIsMouseDown(true);
+  }
+  function handleMouseUp() {
+    setIsMouseDown(false);
+  }
   return (
-    <div className='App'>
+    <div className='App'
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}>
       <div className='main-app-container'>
+      <p>{JSON.stringify(isMouseDown)}</p>
         <Settings 
           color={color}
           contrast={contrast}
@@ -32,6 +42,7 @@ function App() {
             color={color} 
             setColor={setColor}
             showHidePalettes={showHidePalettes}
+            isMouseDown={isMouseDown}
             >
           </ColorSelector>
         </Collapse>
