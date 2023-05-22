@@ -46,6 +46,13 @@ function App() {
             >
           </ColorSelector>
         </Collapse>
+        <Collapse containerClass={'conversions-collapse'}>
+          <Conversions           
+            color={color}
+            contrast={contrast}
+            palType={palType}>
+          </Conversions>
+        </Collapse>
         <Collapse containerClass={'palettes-collapse'}>
           <Palette 
             color={color}
@@ -55,13 +62,6 @@ function App() {
             setPalType={setPalType}
             showHidePalettes={showHidePalettes}>
           </Palette>
-        </Collapse>
-        <Collapse containerClass={'conversions-collapse'}>
-          <Conversions           
-            color={color}
-            contrast={contrast}
-            palType={palType}>
-          </Conversions>
         </Collapse>
         </div>
       </div>
@@ -73,5 +73,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

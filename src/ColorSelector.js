@@ -14,18 +14,6 @@ function Sliders({color, setColor }) {
     }    
     return (
         <div>
-            <div className="slider hue">
-                <label rel="hue">H: {color[0]}</label>
-                <input 
-                    type="range" 
-                    min={0} 
-                    max={360} 
-                    id="hue"
-                    value={color[0]}
-                    onInput={(e) => handleInput(e, 0)}
-                ></input>
-            </div>
-
             <div className="slider sat">
                 <label rel="sat">S: {color[1]}</label>
                 <input 
@@ -75,10 +63,10 @@ export function ColorSelector({color, setColor, showHidePalettes, isMouseDown })
                     setColor={setColor}
                     isMouseDown={isMouseDown}>
                 </ColorWheel>
-                <DispColor 
+                {/* <DispColor 
                     color={color}
                     showHidePalettes={showHidePalettes}>
-                </DispColor>
+                </DispColor> */}
                 <Sliders 
                     color={color} 
                     setColor={setColor}>

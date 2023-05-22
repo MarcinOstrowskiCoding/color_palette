@@ -45,6 +45,7 @@
 .palettes-collapse,
 .conversions-collapse {
   width: 500px;
+  /* flex-grow: 1; */
 }
 
 .settings-container {
