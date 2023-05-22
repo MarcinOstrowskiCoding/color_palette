@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   color: white;
   height: 100vh;
   overflow: hidden;
@@ -23,10 +23,28 @@
   user-select: none;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  width: 520px;
+  align-items: center;
+  width: 1080px;
   height: 90vh;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+@media (max-width: 1720px) {
+  .main-app-container{
+    width: 540px;
+    flex-wrap: nowrap;
   }
+
+}
+
+
+.settings,
+.color-selector-collapse,
+.palettes-collapse,
+.conversions-collapse {
+  width: 500px;
+}
 
 .color-wheel {
   width: 300px;
@@ -34,19 +52,19 @@
   position: relative;
   border-radius: 50%;
   background: conic-gradient(
-    #f22, 
-    #fb0,
-    #fe0, 
-    #7c3, 
-    #0a4, 
-    #098, 
-    #0bd, 
-    #0af, 
-    #09f, 
-    #44b, 
-    #63b, 
-    #f06, 
-    #f22
+    hsl(0, 70%, 50%),
+    hsl(30, 70%, 50%),
+    hsl(60, 70%, 50%), 
+    hsl(90, 70%, 50%),
+    hsl(120, 70%, 50%),
+    hsl(150, 70%, 50%),
+    hsl(180, 70%, 50%), 
+    hsl(210, 70%, 50%),
+    hsl(240, 70%, 50%),
+    hsl(270, 70%, 50%),
+    hsl(300, 70%, 50%),
+    hsl(330, 70%, 50%),
+    hsl(360, 70%, 50%)
   );
   margin: 0 auto;
   margin-bottom: 25px;

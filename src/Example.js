@@ -56,15 +56,18 @@ export function ExampleWebApp( {color, contrast, palType} ) {
         } 
     } 
     return (
-        <div className="ex-body" id='ex-body'>
-            <Nav></Nav>
-            <Article></Article>
-            <Header></Header>
-            <Subscribe></Subscribe>
-            <Info></Info>
-            <Columns></Columns>
-            <Footer></Footer>
+        <div className='ex-body-container'>
+            <div className="ex-body" id='ex-body'>
+                <Nav></Nav>
+                <Article></Article>
+                <Header></Header>
+                <Subscribe></Subscribe>
+                <Info></Info>
+                <Columns></Columns>
+                <Footer></Footer>
+            </div>
         </div>
+
     )
 };
 
