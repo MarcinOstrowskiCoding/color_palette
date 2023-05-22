@@ -3,6 +3,14 @@
   margin: 0px;
 }
 
+#root {
+  background-color: hsl(220, 13%, 14%);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
 .App {
   --background-color: #282c34;
   --border-color: hsl(0, 0%, 31%);
@@ -15,7 +23,9 @@
   align-items: center;
   justify-content: center;
   color: white;
-  height: 100vh;
+  height: 94vh;
+  min-width: 600px;
+  max-width: 1740px;
   overflow: hidden;
 }
 
@@ -35,9 +45,7 @@
     width: 540px;
     flex-wrap: nowrap;
   }
-
 }
-
 
 .settings,
 .color-selector-collapse,
