@@ -1,27 +1,30 @@
 export function Settings({color, contrast, palType, setColor, setContrast, setPalType, setSHPalettes, showHidePalettes}){
     return (
-        <div className="settings">
-            <HidePalettes
-                showHidePalettes={showHidePalettes}
-                setSHPalettes={setSHPalettes}>
-            </HidePalettes>
-            <ShowColorWheel>
-            </ShowColorWheel>
-            <HideExamplePage>
-            </HideExamplePage>
-            <Reset
-                setColor={setColor}
-                setContrast={setContrast}
-                setPalType={setPalType}
-                setSHPalettes={setSHPalettes}>
-            </Reset>
-            <Save>
-            </Save>
-            <Load
-                setColor={setColor}
-                setContrast={setContrast}
-                setPalType={setPalType}>
-            </Load>
+        <div className="settings-container">
+            <p><span>dev</span> PALETTE TOOLS</p>
+            <div className="settings">
+                <HidePalettes
+                    showHidePalettes={showHidePalettes}
+                    setSHPalettes={setSHPalettes}>
+                </HidePalettes>
+                <ShowColorWheel>
+                </ShowColorWheel>
+                <HideExamplePage>
+                </HideExamplePage>
+                <Reset
+                    setColor={setColor}
+                    setContrast={setContrast}
+                    setPalType={setPalType}
+                    setSHPalettes={setSHPalettes}>
+                </Reset>
+                <Save>
+                </Save>
+                <Load
+                    setColor={setColor}
+                    setContrast={setContrast}
+                    setPalType={setPalType}>
+                </Load>
+            </div>
         </div>
     )
 }

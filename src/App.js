@@ -25,7 +25,7 @@ function App() {
     <div className='App'
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}>
-      <div className='main-app-container'>
+      <div>
         <Settings 
           color={color}
           contrast={contrast}
@@ -36,6 +36,7 @@ function App() {
           setSHPalettes={setSHPalettes}
           showHidePalettes={showHidePalettes}>
         </Settings>
+        <div className='main-app-container'>
         <Collapse containerClass={'color-selector-collapse'}>
           <ColorSelector 
             color={color} 
@@ -62,6 +63,7 @@ function App() {
             palType={palType}>
           </Conversions>
         </Collapse>
+        </div>
       </div>
       <ExampleWebApp 
         color={color} 

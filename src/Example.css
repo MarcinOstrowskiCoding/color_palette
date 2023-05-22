@@ -20,8 +20,9 @@
     --alt-dark: hsl(0 100% 10%);
     box-sizing: border-box;
     width: 580px;
-    height: 90vh;
-    margin: 2vh;
+    height: 92vh;
+    /* margin: 5.4vh 2vh 2vh 2vh; */
+    margin: 1vh;
     padding: 1.4vh;
     background-color: var(--light);
     color: var(--dark);
@@ -59,6 +60,10 @@
     color: var(--second-light);
 }
 
+.ex-article h2 {
+    margin-top: 0px;
+}
+
 .ex-columns {
     display: flex;
 }
@@ -81,6 +86,7 @@
 
 .ex-column h2 {
     font-size: 18px;
+    margin: 4px;
 }
 
 .ex-subscribe {
@@ -105,7 +111,7 @@
 .ex-info {
     display: flex;
     gap: 12px;
-    margin: 12px;
+    margin: 0px 12px;
     text-align: left;
 }
 
