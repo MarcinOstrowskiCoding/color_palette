@@ -42,16 +42,16 @@ function Sliders({color, setColor }) {
     )
 }
 
-function DispColor({color, showHidePalettes }) {
-    let [hue, sat, light] = [...color];
-    return(
-        <div 
-            className="disp-color"
-            style={{background: `hsl(${hue}, ${sat}%, ${light}%)`,
-                    display: showHidePalettes}}>
-        </div>
-    )
-}
+// function DispColor({color, showHidePalettes }) {
+//     let [hue, sat, light] = [...color];
+//     return(
+//         <div 
+//             className="disp-color"
+//             style={{background: `hsl(${hue}, ${sat}%, ${light}%)`,
+//                     display: showHidePalettes}}>
+//         </div>
+//     )
+// }
 
 export function ColorSelector({color, setColor, showHidePalettes, isMouseDown }) {
     return(
@@ -76,8 +76,26 @@ export function ColorSelector({color, setColor, showHidePalettes, isMouseDown })
     )
 }
 
-
 function ColorWheel({color, setColor, isMouseDown }) {
+    function getCoordsOnCircle() {
+        let angleMono = calcHue(vecAB, vecAC) + 180;
+        let angleComp = angleMono -180;
+        let r = 250/2;
+        let centerX = 142;
+        let centerY = 142;
+        function calcXY(angle) {
+            return { x: (-1 * r * Math.sin(Math.PI * 2 * angle / 360)) + centerX, 
+                     y: r * Math.cos(Math.PI * 2 * angle / 360) + centerY}
+        }
+        let monoCoords = calcXY(angleMono);
+        let ptMono = document.querySelector('.dot-monohrome');
+        ptMono.style.left = monoCoords.x + 'px';
+        ptMono.style.top = monoCoords.y + 'px';
+        let contCoords = calcXY(angleComp);
+        let ptComp = document.querySelector('.dot-complementary');
+        ptComp.style.left = contCoords.x + 'px';
+        ptComp.style.top = contCoords.y + 'px';
+    }
     const [coords, setCoords] = useState({x:150, y:150});
     function getHueFromWheel(e) {
         let newColor = [...color];
@@ -87,6 +105,7 @@ function ColorWheel({color, setColor, isMouseDown }) {
         let elementX = Math.round(element.left);
         let elementY = Math.round(element.top);
         newColor[0] = newHue;
+        getCoordsOnCircle();
         setColor(newColor);
         setCoords({x: e.clientX - elementX, y: e.clientY - elementY});
     }
@@ -155,15 +174,17 @@ function ColorWheel({color, setColor, isMouseDown }) {
             onMouseDown={(e)=>handleMouseDown(e)}
             onMouseUp={(e)=>handleMouseUp(e)}
             >
+            <div className="dot dot-monohrome"></div>
+            <div className="dot dot-complementary"></div>
+            <div className="dot dot-triadical"></div>
+            <div className="dot dot-constructor"></div>
             <div className="color-wheel-center">
                 <p>color[0]: {color[0]}</p>
                 <p>calcHue {calcHue(vecAB, vecAC)}</p>
-                <p>coords: {`${a.x}, ${a.y}`}</p>
+                {/* <p>coords: {`${getCoordsOnCircle(color).x}, ${getCoordsOnCircle(color).y}`}</p> */}
                 <p>coords: {`${b.x}, ${b.y}`}</p>
                 <p>coords: {`${c.x}, ${c.y}`}</p>
-                <div className="dot dot-monohrome"></div>
-                <div className="dot dot-complementary"></div>
-                <div className="dot dot-triadical"></div>
+
             </div>
         </div>
         </>

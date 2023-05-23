@@ -23,28 +23,6 @@ export function Settings({color, contrast, palType, setColor, setContrast, setPa
     )
 }
 
-// function HidePalettes( {showHidePalettes, setSHPalettes} ) {
-//     function handleClick() {
-//         let btn = document.getElementById('btn-show-hide-pal');
-//         if (showHidePalettes === 'block') {
-//             setSHPalettes('none');
-//             btn.innerHTML = 'show palettes';
-//         } else {
-//             setSHPalettes('block');
-//             btn.innerHTML = 'hide palettes';
-//         }
-//     }
-//     return (
-//         <>
-//             <button 
-//                 className="btn btn-show-pal"
-//                 id='btn-show-hide-pal' 
-//                 onClick={handleClick}
-//             >hide palettes</button>
-//         </>
-//     )
-// }
-
 function Reset( {setColor, setContrast, setPalType, setSHPalettes} ) {
     function handleClick() {
         let selPal = document.getElementById('sel-pal-def-option');
@@ -63,20 +41,6 @@ function Reset( {setColor, setContrast, setPalType, setSHPalettes} ) {
         </button>
     )
 }
-
-// function ShowColorWheel() {
-//     function handleClick() {
-//         return //nada atm
-//     }
-//     return (
-//         <button
-//             className="btn btn-show-colorwheel"
-//             id="btn-show-colorwheel"
-//             onClick={handleClick}>
-//             show color wheel
-//         </button>
-//     )
-// }
 
 function Save( {color, cotrast, palType} ) {
     function handleClick() {
@@ -129,3 +93,39 @@ function HideExamplePage() {
         </button>
     )
 }
+
+// function HidePalettes( {showHidePalettes, setSHPalettes} ) {
+//     function handleClick() {
+//         let btn = document.getElementById('btn-show-hide-pal');
+//         if (showHidePalettes === 'block') {
+//             setSHPalettes('none');
+//             btn.innerHTML = 'show palettes';
+//         } else {
+//             setSHPalettes('block');
+//             btn.innerHTML = 'hide palettes';
+//         }
+//     }
+//     return (
+//         <>
+//             <button 
+//                 className="btn btn-show-pal"
+//                 id='btn-show-hide-pal' 
+//                 onClick={handleClick}
+//             >hide palettes</button>
+//         </>
+//     )
+// }
+
+// function ShowColorWheel() {
+//     function handleClick() {
+//         return //nada atm
+//     }
+//     return (
+//         <button
+//             className="btn btn-show-colorwheel"
+//             id="btn-show-colorwheel"
+//             onClick={handleClick}>
+//             show color wheel
+//         </button>
+//     )
+// }

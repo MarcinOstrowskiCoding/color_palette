@@ -125,6 +125,40 @@
   justify-content: center;
 }
 
+.dot-monohrome,
+.dot-complementary {
+  position: absolute;
+  z-index: 3;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+
+.dot-monohrome {
+  top: 17px;
+  left: 142px;
+  border: 1px solid white;
+  background-color: hsla(0, 00%, 80%, 0.7);
+}
+
+.dot-complementary {
+  top: 267px;
+  left: 142px;
+  border: 1px solid gray;
+  background-color: hsla(0, 00%, 40%, 0.5);
+}
+
+/* .dot-constructor {
+  position: absolute;
+  z-index: -4;
+  top: 25px;
+  left: 25px;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+} */
+
 .color-selector {
   margin: 6px 0px;
   padding: 18px 16px 14px 16px;
