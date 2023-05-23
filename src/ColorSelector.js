@@ -38,7 +38,6 @@ function Sliders({color, setColor }) {
                 ></input>
             </div>
         </div>
-
     )
 }
 
@@ -88,7 +87,7 @@ function ColorWheel({color, setColor, isMouseDown }) {
                      y: r * Math.cos(Math.PI * 2 * angle / 360) + centerY}
         }
         let monoCoords = calcXY(angleMono);
-        let ptMono = document.querySelector('.dot-monohrome');
+        let ptMono = document.querySelector('.dot-monochrome');
         ptMono.style.left = monoCoords.x + 'px';
         ptMono.style.top = monoCoords.y + 'px';
         let contCoords = calcXY(angleComp);
@@ -174,7 +173,7 @@ function ColorWheel({color, setColor, isMouseDown }) {
             onMouseDown={(e)=>handleMouseDown(e)}
             onMouseUp={(e)=>handleMouseUp(e)}
             >
-            <div className="dot dot-monohrome"></div>
+            <div className="dot dot-monochrome"></div>
             <div className="dot dot-complementary"></div>
             <div className="dot dot-triadical"></div>
             <div className="dot dot-constructor"></div>

@@ -13,7 +13,7 @@ function maxValue(value){
 };
 
 function SelectPalType( {setPalType} ){
-    let paletteTypes = [{name: "monohromatic", hue: [0]},
+    let paletteTypes = [{name: "monochromatic", hue: [0]},
                         {name: "complementary", hue: [0, 180]},
                         {name: "triadical", hue: [0, 120, -120]},
                         {name: "analogus", hue: [0, 30, -30]},
@@ -36,9 +36,9 @@ function SelectPalType( {setPalType} ){
                         onInput={(e) => handleInput(e)}
                         >                        
                     <option 
-                        value={"monohromatic"}
+                        value={"monochromatic"}
                         id="sel-pal-def-option"
-                        >monohromatic</option>
+                        >monochromatic</option>
                     <option value={"complementary"}>complementary</option>
                     <option value={"triadical"}>triadical</option>
                     <option value={"analogus"}>analogus</option>

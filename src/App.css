@@ -125,7 +125,7 @@
   justify-content: center;
 }
 
-.dot-monohrome,
+.dot-monochrome,
 .dot-complementary {
   position: absolute;
   z-index: 3;
@@ -134,7 +134,7 @@
   border-radius: 50%;
 }
 
-.dot-monohrome {
+.dot-monochrome {
   top: 17px;
   left: 142px;
   border: 1px solid white;
