@@ -76,6 +76,18 @@ export function ColorSelector({color, setColor, showHidePalettes, isMouseDown })
 }
 
 function ColorWheel({color, setColor, isMouseDown }) {
+    let colorDots = [
+        {name: 'monochrome', angle: 0},
+        {name: 'complementary', angle: 180}, 
+        {name: 'triadical1', angle: -90},
+        {name: 'triadical2', angle: 90},
+        {name: 'analogus1', angle: -30},
+        {name: 'analogus2', angle: 30},
+        {name: 'natural1', angle: -15},
+        {name: 'natural2', angle: 15},
+        {name: 'custom', angle: 0}
+    ];
+
     function getCoordsOnCircle() {
         let angleMono = calcHue(vecAB, vecAC) + 180;
         let angleComp = angleMono -180;
