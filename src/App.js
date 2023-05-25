@@ -34,14 +34,16 @@ function App() {
           setContrast={setContrast}
           setPalType={setPalType}
           setSHPalettes={setSHPalettes}
-          showHidePalettes={showHidePalettes}>
+          // showHidePalettes={showHidePalettes}
+          >
         </Settings>
         <div className='main-app-container'>
         <Collapse containerClass={'color-selector-collapse'}>
           <ColorSelector 
             color={color} 
             setColor={setColor}
-            showHidePalettes={showHidePalettes}
+            palType={palType}
+            // showHidePalettes={showHidePalettes}
             isMouseDown={isMouseDown}
             >
           </ColorSelector>

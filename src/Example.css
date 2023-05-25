@@ -21,7 +21,6 @@
     box-sizing: border-box;
     width: 580px;
     height: 92vh;
-    /* margin: 5.4vh 2vh 2vh 2vh; */
     margin: 1vh;
     padding: 1.4vh;
     background-color: var(--light);

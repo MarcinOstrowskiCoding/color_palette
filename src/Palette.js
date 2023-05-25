@@ -1,3 +1,5 @@
+import { paletteHues } from "./ColorSelector";
+
 export function getHSL(arr){
     return `hsl(${arr[0]}, ${arr[1]}%, ${arr[2]}%)`
 };
@@ -12,20 +14,54 @@ function maxValue(value){
     }
 };
 
+function hideAllHueDots() {
+    paletteHues.map((palette)=>{
+        let dotElement = document.querySelector(`.dot-${palette.name}`);
+        dotElement.style.visibility = 'hidden';
+    });
+}
+
+function showSelectedHueDot(e) {
+    let dotMono = document.querySelector('.dot-monochrome');
+    dotMono.style.visibility = 'visible';
+    let selectedPalette = e.target.value;
+    if (selectedPalette === 'monochromatic') {
+        // monochromatic dot needs to be visible in all cases therfore
+        // code responsible for that is already included in this function
+    } else if (selectedPalette === 'complementary') {
+        let dotCompl = document.querySelector('.dot-complementary');
+        dotCompl.style.visibility = 'visible';
+    } else if (selectedPalette === 'custom') {
+        //custom dot/dots will be added in future
+    } else {
+        let dotElement1 = document.querySelector(`.dot-${selectedPalette}1`);
+        let dotElement2 = document.querySelector(`.dot-${selectedPalette}2`);
+        dotElement1.style.visibility = 'visible';
+        dotElement2.style.visibility = 'visible';
+    }
+}
+
+function passPaletteTypeToState(e, paletteTypes, setPalType) {
+    paletteTypes.map((palette) => {
+        if(e.target.value === palette.name) {
+            return setPalType(palette);
+        }
+    });
+}
+
 function SelectPalType( {setPalType} ){
-    let paletteTypes = [{name: "monochromatic", hue: [0]},
-                        {name: "complementary", hue: [0, 180]},
-                        {name: "triadical", hue: [0, 120, -120]},
-                        {name: "analogus", hue: [0, 30, -30]},
-                        {name: "neutral", hue: [0, 15, -15]}
-                        ]
+    let paletteTypes = [
+        {name: "monochromatic", hue: [0]},
+        {name: "complementary", hue: [0, 180]},
+        {name: "triadical", hue: [0, 120, -120]},
+        {name: "analogus", hue: [0, 30, -30]},
+        {name: "neutral", hue: [0, 15, -15]}
+    ];
     function handleInput(e){
-        paletteTypes.map((palette) => {
-            if(e.target.value === palette.name) {
-                return setPalType(palette);
-            }
-        })
-    };
+        passPaletteTypeToState(e, paletteTypes, setPalType)
+        hideAllHueDots()
+        showSelectedHueDot(e);
+    }
     return (
         <>
             <div className="select-pal-type">

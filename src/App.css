@@ -141,12 +141,12 @@
   background-color: hsla(0, 00%, 80%, 0.7);
 }
 
-.dot-complementary {
+/* .dot-complementary {
   top: 267px;
   left: 142px;
   border: 1px solid gray;
   background-color: hsla(0, 00%, 40%, 0.5);
-}
+} */
 
 /* .dot-constructor {
   position: absolute;
