@@ -73,7 +73,6 @@ export let paletteHues = [
     {name: 'custom', angle: 0}
 ];
 
-
 function drawDotsOnCircle(calcHue, vecAB, vecAC, palType) {
     let r = 250/2;
     let centerX = 142;
