@@ -41,7 +41,7 @@ export function ExampleWebApp( {color, contrast, palType} ) {
         return newPalette;
     };
     if (document.getElementById("ex-body")) {
-        if (palType.name === "monohromatic") {
+        if (palType.name === "monochromatic") {
             setBaseColors(buildPaletteNo(0));
             setSecondaryColors(buildPaletteNo(0));
             setAlternativeColors(buildPaletteNo(0));

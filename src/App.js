@@ -12,7 +12,7 @@ import { Collapse } from './Collapse';
 function App() {
   const [color, setColor] = useState([0, 50, 50]);
   const [contrast, setContrast] = useState(80);
-  const [palType, setPalType] = useState({name: 'monohromatic', hue: [0]});
+  const [palType, setPalType] = useState({name: 'monochromatic', hue: [0]});
   const [showHidePalettes, setSHPalettes] = useState('block');
   const [isMouseDown, setIsMouseDown ] = useState(false);
   function handleMouseDown() {
@@ -34,28 +34,32 @@ function App() {
           setContrast={setContrast}
           setPalType={setPalType}
           setSHPalettes={setSHPalettes}
-          // showHidePalettes={showHidePalettes}
           >
         </Settings>
         <div className='main-app-container'>
-        <Collapse containerClass={'color-selector-collapse'}>
+        <Collapse 
+          containerClass={'color-selector-collapse'}
+          palType={palType}>
           <ColorSelector 
             color={color} 
             setColor={setColor}
             palType={palType}
-            // showHidePalettes={showHidePalettes}
             isMouseDown={isMouseDown}
             >
           </ColorSelector>
         </Collapse>
-        <Collapse containerClass={'conversions-collapse'}>
+        <Collapse 
+          containerClass={'conversions-collapse'}
+          palType={palType}>
           <Conversions           
             color={color}
             contrast={contrast}
             palType={palType}>
           </Conversions>
         </Collapse>
-        <Collapse containerClass={'palettes-collapse'}>
+        <Collapse 
+          containerClass={'palettes-collapse'}
+          palType={palType}>
           <Palette 
             color={color}
             contrast={contrast}
