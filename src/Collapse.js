@@ -8,7 +8,7 @@ function eventObjects(element) {
     return eventObjArr;
 }
 
-export function Collapse( {children, containerClass, palType} ) {
+export function CollapseBtn( {children, containerClass, palType} ) {
     // useEffect(() => {
     //     collapse('conversions-collapse');
     //     collapse('palettes-collapse');

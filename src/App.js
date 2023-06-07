@@ -5,7 +5,7 @@ import { Palette } from './Palette';
 import { ExampleWebApp } from './Example';
 import { Settings } from './Settings';
 import { Conversions } from './Conversions';
-import { Collapse } from './Collapse';
+import { CollapseBtn } from './Collapse';
 import { collapse } from './Collapse';
 
 
@@ -42,7 +42,7 @@ function App() {
           >
         </Settings>
         <div className='main-app-container'>
-        <Collapse 
+        <CollapseBtn 
           containerClass={'color-selector-collapse'}
           palType={palType}>
           <ColorSelector 
@@ -52,8 +52,8 @@ function App() {
             isMouseDown={isMouseDown}
             >
           </ColorSelector>
-        </Collapse>
-        <Collapse 
+        </CollapseBtn>
+        <CollapseBtn 
           containerClass={'conversions-collapse'}
           palType={palType}>
           <Conversions           
@@ -61,8 +61,8 @@ function App() {
             contrast={contrast}
             palType={palType}>
           </Conversions>
-        </Collapse>
-        <Collapse 
+        </CollapseBtn>
+        <CollapseBtn 
           containerClass={'palettes-collapse'}
           palType={palType}>
           <Palette 
@@ -73,7 +73,7 @@ function App() {
             setPalType={setPalType}
             showHidePalettes={showHidePalettes}>
           </Palette>
-        </Collapse>
+        </CollapseBtn>
         </div>
       </div>
       <ExampleWebApp 
