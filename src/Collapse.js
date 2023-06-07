@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 function eventObjects(element) {
     let parent = document.querySelector('.' + element);
     let collapseContainer = parent.querySelector('.collapse-container');
@@ -7,11 +9,16 @@ function eventObjects(element) {
 }
 
 export function Collapse( {children, containerClass, palType} ) {
+    // useEffect(() => {
+    //     collapse('conversions-collapse');
+    //     collapse('palettes-collapse');
+    //     alert('check how many times im triggered');
+    // }, [])
     function handleClick({containerClass}) {
         let collapseBtn = eventObjects(containerClass)[2];
         let isExpanded = collapseBtn.textContent === 'collapse' ? true : false
         let eventObject = containerClass;
-        autoCollapse(palType, eventObject)
+        autoCollapse(palType, eventObject);
         isExpanded ? collapse(eventObject) : expand(eventObject);
     }
     return(
@@ -27,7 +34,7 @@ export function Collapse( {children, containerClass, palType} ) {
     )
 }
 
-function collapse(element) {
+export function collapse(element) {
     let [parent, collapseContainer, collapseBtn] = eventObjects(element);
     parent.style.height = 8 + 'px';
     collapseContainer.style.height = 0 + 'px';
