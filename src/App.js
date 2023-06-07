@@ -6,7 +6,7 @@ import { ExampleWebApp } from './Example';
 import { Settings } from './Settings';
 import { Conversions } from './Conversions';
 import { CollapseBtn } from './Collapse';
-import { collapse } from './Collapse';
+import { autoCollapse } from './Collapse';
 
 
 
@@ -17,8 +17,7 @@ function App() {
   const [showHidePalettes, setSHPalettes] = useState('block');
   const [isMouseDown, setIsMouseDown ] = useState(false);
   useEffect(() => {
-    collapse('conversions-collapse');
-    collapse('palettes-collapse');
+    autoCollapse(palType, 'color-selector-collapse');
 }, [])
   function handleMouseDown() {
     setIsMouseDown(true);

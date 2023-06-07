@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 function eventObjects(element) {
     let parent = document.querySelector('.' + element);
     let collapseContainer = parent.querySelector('.collapse-container');
@@ -9,17 +7,12 @@ function eventObjects(element) {
 }
 
 export function CollapseBtn( {children, containerClass, palType} ) {
-    // useEffect(() => {
-    //     collapse('conversions-collapse');
-    //     collapse('palettes-collapse');
-    //     alert('check how many times im triggered');
-    // }, [])
     function handleClick({containerClass}) {
         let collapseBtn = eventObjects(containerClass)[2];
         let isExpanded = collapseBtn.textContent === 'collapse' ? true : false
         let eventObject = containerClass;
-        autoCollapse(palType, eventObject);
         isExpanded ? collapse(eventObject) : expand(eventObject);
+        autoCollapse(palType, eventObject);
     }
     return(
         <div className={containerClass}> 
@@ -63,16 +56,15 @@ function paletteContainerHeight(palType) {
     }
 }
 
-function heightAfterEvent(palType, eventElementClass) {
-    function isCollapsed(className) {
-        let collapseBtn = eventObjects(className)[2];
-        let collapsed = collapseBtn.textContent === 'expand' ? true : false;
-        collapsed = eventElementClass === className ? !collapsed : collapsed;
-        return collapsed;
-    }
+function isCollapsed(className) {
+    let collapseBtn = eventObjects(className)[2];
+    let collapsed = collapseBtn.textContent === 'expand' ? true : false;
+    return collapsed;
+}
+
+function heightAfterEvent(palType) {
     let settingsHeight = 51;
     let collapseHeight = 8 + 24;
-
     let colorHeight = isCollapsed('color-selector-collapse') ? collapseHeight :  454 + 24;
     let convHeight = isCollapsed('conversions-collapse') ? collapseHeight: 254 + 24 ;
     let paletteHeight = paletteContainerHeight(palType);
@@ -83,7 +75,7 @@ function heightAfterEvent(palType, eventElementClass) {
 }
 
 
-function autoCollapse(palType, eventObj) {
+export function autoCollapse(palType, eventObj) {
     let mainContainer = document.querySelector('.main-app-container');
     let containersClassNames = [
         'color-selector-collapse', 
@@ -94,7 +86,7 @@ function autoCollapse(palType, eventObj) {
     let availableWidth = window.screen.width;
     let availableHeight = mainContainer.offsetHeight;
     availableHeight = availableWidth > 1720 ? availableHeight * 2 : availableHeight;
-    let contentHeight = heightAfterEvent(palType, eventObj);
+    let contentHeight = heightAfterEvent(palType);
     if (contentHeight > availableHeight) {
         collapseClassNames.forEach(element => collapse(element));
     }
