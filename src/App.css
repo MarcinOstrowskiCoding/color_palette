@@ -63,8 +63,8 @@
 
 @media (max-width: 1720px) {
   .main-app-container{
-    width: 540px;
-    height: 88vh;
+    /* width: 540px; */
+    /* height: 88vh; */
     flex-wrap: nowrap;
   }
   .settings-container {

@@ -5,8 +5,7 @@ import { Palette } from './Palette';
 import { ExampleWebApp } from './Example';
 import { Settings } from './Settings';
 import { Conversions } from './Conversions';
-import { CollapseBtn } from './Collapse';
-import { autoCollapse } from './Collapse';
+import { CollapseBtn, autoCollapse, NewComponent, changeContainerOnResize } from './Collapse';
 
 function App() {
   const [color, setColor] = useState([0, 50, 50]);
@@ -16,6 +15,7 @@ function App() {
   const [isMouseDown, setIsMouseDown ] = useState(false);
   useEffect(() => {
     autoCollapse(palType, 'color-selector-collapse');
+    changeContainerOnResize(palType);
 }, [])
   function handleMouseDown() {
     setIsMouseDown(true);
@@ -28,6 +28,9 @@ function App() {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}>
       <div>
+        <NewComponent
+          palType={palType}>
+        </NewComponent>
         <Settings 
           color={color}
           contrast={contrast}
@@ -35,8 +38,7 @@ function App() {
           setColor={setColor}
           setContrast={setContrast}
           setPalType={setPalType}
-          setSHPalettes={setSHPalettes}
-          >
+          setSHPalettes={setSHPalettes}>
         </Settings>
         <div className='main-app-container'>
         <CollapseBtn 
@@ -46,8 +48,7 @@ function App() {
             color={color} 
             setColor={setColor}
             palType={palType}
-            isMouseDown={isMouseDown}
-            >
+            isMouseDown={isMouseDown}>
           </ColorSelector>
         </CollapseBtn>
         <CollapseBtn 

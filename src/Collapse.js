@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 function eventObjects(element) {
     let parent = document.querySelector('.' + element);
     let collapseContainer = parent.querySelector('.collapse-container');
@@ -103,18 +105,58 @@ function collapseAllNonactive(eventObj) {
 export function autoCollapse(palType, eventObj) {
     let avaWidth = calcAvailableWidth();
     let avaHeight = calcAvailableHeight();
-    avaHeight = avaWidth > 1220 ? avaHeight * 2 : avaHeight;
+    avaHeight = avaWidth > 1080 ? avaHeight * 2 : avaHeight;
     let contentHeight = calcContentHeight(palType);
     if (contentHeight > avaHeight) {
         collapseAllNonactive(eventObj);
     }
 }
 
-function handleWindowResize() {
+function expandAll() {
+    let containersClassNames = [
+        'color-selector-collapse', 
+        'conversions-collapse',
+        'palettes-collapse'
+    ];
+    containersClassNames.forEach(element => expand(element));
+}
+
+export function changeContainerOnResize(palType) {
     let mainContainer = document.querySelector('.main-app-container');
-    if (window.innerWidth < 1080) {
+    let avaHeight = calcAvailableHeight();
+    let avaWidth = calcAvailableWidth();
+    let contentHeight = calcContentHeight(palType);
+    if (avaWidth < 1080) {
         mainContainer.style.width = 580 + 'px';
+        mainContainer.style.height = 88 + 'vh';
+        mainContainer.style.flexWrap = 'nowrap';
+        if (contentHeight > avaHeight) {
+            collapseAllNonactive('color-selector-collapse');
+        }
     } else {
         mainContainer.style.width = 1080 + 'px';
+        mainContainer.style.height = 90 + 'vh';
+        mainContainer.style.flexWrap = 'wrap';
+        expandAll();
     }
+}
+
+export function NewComponent( {palType} ) {
+    const [dimensions, setDimensions] = useState({
+        height: window.innerHeight,
+        width: window.innerWidth
+    })
+    useEffect(()=> {
+        function handleResize() {
+            setDimensions({
+                height: window.innerHeight,
+                width: window.innerWidth
+            })
+            changeContainerOnResize(palType);
+        }
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    
+    })
+    return <div></div>
 }

@@ -54,7 +54,7 @@ export function ExampleWebApp( {color, contrast, palType} ) {
             setSecondaryColors(buildPaletteNo(1));
             setAlternativeColors(buildPaletteNo(2));
         } 
-    } 
+    }
     return (
         <div className='ex-body-container'>
             <div className="ex-body" id='ex-body'>
