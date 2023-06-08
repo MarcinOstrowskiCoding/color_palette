@@ -32,7 +32,7 @@ function Reset( {setColor, setContrast, setPalType, setSHPalettes} ) {
         selPal.selected = true;
         setColor([0, 50, 50]);
         setContrast(80);
-        setPalType({name: 'monohromatic', hue: [0]});
+        setPalType({name: 'monochromatic', hue: [0]});
         setSHPalettes('block')
     }
     return (
