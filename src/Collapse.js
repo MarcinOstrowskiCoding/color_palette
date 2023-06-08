@@ -4,17 +4,22 @@ function eventObjects(element) {
     let parent = document.querySelector('.' + element);
     let collapseContainer = parent.querySelector('.collapse-container');
     let collapseBtn = parent.querySelector('.collapse-btn');
-    let eventObjArr = [parent, collapseContainer, collapseBtn]
+    let eventObjArr = [parent, collapseContainer, collapseBtn];
     return eventObjArr;
 }
 
 export function CollapseBtn( {children, containerClass, palType} ) {
     function handleClick({containerClass}) {
         let collapseBtn = eventObjects(containerClass)[2];
-        let isExpanded = collapseBtn.textContent === 'collapse' ? true : false
+        let isExpanded = collapseBtn.textContent === 'collapse' ? true : false;
         let eventObject = containerClass;
         isExpanded ? collapse(eventObject) : expand(eventObject);
         autoCollapse(palType, eventObject);
+        // let contentHeight = calcContentHeight(palType);
+        // let avaHeight = calcAvailableHeight();
+        // if (contentHeight < avaHeight) {
+        //     changeLayoutOnResize(palType);
+        // }
     }
     return(
         <div className={containerClass}> 
@@ -121,15 +126,21 @@ function expandAll() {
     containersClassNames.forEach(element => expand(element));
 }
 
-export function changeContainerOnResize(palType) {
+export function changeLayoutOnResize(palType) {
     let mainContainer = document.querySelector('.main-app-container');
+    let settingsContainer = document.querySelector('.settings-container');
+    let settingsEle = document.querySelector('.settings');
     let avaHeight = calcAvailableHeight();
     let avaWidth = calcAvailableWidth();
     let contentHeight = calcContentHeight(palType);
     if (avaWidth < 1080) {
-        mainContainer.style.width = 580 + 'px';
+        mainContainer.style.width = 540 + 'px';
         mainContainer.style.height = 88 + 'vh';
         mainContainer.style.flexWrap = 'nowrap';
+        settingsContainer.style.flexDirection = 'column';
+        settingsEle.style.gap = 2 + 'px';
+        settingsEle.style.height = 24 + 'px';
+        settingsEle.style.margin = 0 + 'px' + ' ' + 6 + 'px';
         if (contentHeight > avaHeight) {
             collapseAllNonactive('color-selector-collapse');
         }
@@ -137,6 +148,10 @@ export function changeContainerOnResize(palType) {
         mainContainer.style.width = 1080 + 'px';
         mainContainer.style.height = 90 + 'vh';
         mainContainer.style.flexWrap = 'wrap';
+        settingsContainer.style.flexDirection = 'row';
+        settingsEle.style.gap = 8 + 'px';
+        settingsEle.style.height = 30 + 'px';
+        settingsEle.style.marginLeft = 'auto';
         expandAll();
     }
 }
@@ -152,7 +167,7 @@ export function NewComponent( {palType} ) {
                 height: window.innerHeight,
                 width: window.innerWidth
             })
-            changeContainerOnResize(palType);
+            changeLayoutOnResize(palType);
         }
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);

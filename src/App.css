@@ -25,7 +25,7 @@
   justify-content: center;
   color: white;
   height: 94vh;
-  min-width: 600px;
+  min-width: 540px;
   max-width: 1740px;
   overflow: hidden;
 }
@@ -45,11 +45,11 @@
 .palettes-collapse,
 .conversions-collapse {
   width: 500px;
-  /* flex-grow: 1; */
 }
 
 .settings-container {
   display: flex;
+  align-items: start;
   margin: 0px 8px;
 }
 
@@ -62,15 +62,7 @@
 }
 
 @media (max-width: 1720px) {
-  .main-app-container{
-    /* width: 540px; */
-    /* height: 88vh; */
-    flex-wrap: nowrap;
-  }
-  .settings-container {
-    flex-direction: column;
-    align-items: start;
-  }
+
   .settings {
     gap:2px;
     margin: 0px 6px;

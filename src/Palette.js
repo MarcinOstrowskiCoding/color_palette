@@ -28,7 +28,7 @@ function showSelectedHueDot(e) {
     let selectedPalette = e.target.value;
     if (selectedPalette === 'monochromatic') {
         // monochromatic dot needs to be visible in all cases therfore
-        // code responsible for that is already included in this function
+        // code responsible for that is included above if else statement
     } else if (selectedPalette === 'complementary') {
         let dotCompl = document.querySelector('.dot-complementary');
         dotCompl.style.visibility = 'visible';

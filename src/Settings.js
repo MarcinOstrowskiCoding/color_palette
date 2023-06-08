@@ -1,9 +1,12 @@
-export function Settings({color, contrast, palType, setColor, setContrast, setPalType, setSHPalettes, showHidePalettes}){
+import { changeLayoutOnResize } from "./Collapse";
+
+export function Settings( {color, contrast, palType, setColor, setContrast, setPalType, setSHPalettes, showHidePalettes} ){
     return (
         <div className="settings-container">
             <p><span>dev</span> PALETTE TOOLS</p>
             <div className="settings">
-                <HideExamplePage>
+                <HideExamplePage
+                    palType={palType}>
                 </HideExamplePage>
                 <Reset
                     setColor={setColor}
@@ -70,7 +73,7 @@ function Load( {setColor, setContrast, setPalType} ) {
     )
 }
 
-function HideExamplePage() {
+function HideExamplePage( {palType} ) {
     function handleClick() {
         let example = document.querySelector('#ex-body');
         let btn = document.querySelector('#btn-hide-example');
@@ -83,6 +86,7 @@ function HideExamplePage() {
             btn.textContent = '';
             btn.appendChild(document.createTextNode('show example page'));
         }
+        changeLayoutOnResize(palType);
     }
     return (
         <button

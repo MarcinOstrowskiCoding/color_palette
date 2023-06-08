@@ -5,7 +5,7 @@ import { Palette } from './Palette';
 import { ExampleWebApp } from './Example';
 import { Settings } from './Settings';
 import { Conversions } from './Conversions';
-import { CollapseBtn, autoCollapse, NewComponent, changeContainerOnResize } from './Collapse';
+import { CollapseBtn, autoCollapse, NewComponent, changeLayoutOnResize } from './Collapse';
 
 function App() {
   const [color, setColor] = useState([0, 50, 50]);
@@ -15,7 +15,7 @@ function App() {
   const [isMouseDown, setIsMouseDown ] = useState(false);
   useEffect(() => {
     autoCollapse(palType, 'color-selector-collapse');
-    changeContainerOnResize(palType);
+    changeLayoutOnResize(palType);
 }, [])
   function handleMouseDown() {
     setIsMouseDown(true);
