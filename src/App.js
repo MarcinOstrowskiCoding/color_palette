@@ -8,8 +8,6 @@ import { Conversions } from './Conversions';
 import { CollapseBtn } from './Collapse';
 import { autoCollapse } from './Collapse';
 
-
-
 function App() {
   const [color, setColor] = useState([0, 50, 50]);
   const [contrast, setContrast] = useState(80);

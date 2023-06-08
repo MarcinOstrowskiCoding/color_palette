@@ -27,7 +27,7 @@ export function CollapseBtn( {children, containerClass, palType} ) {
     )
 }
 
-export function collapse(element) {
+function collapse(element) {
     let [parent, collapseContainer, collapseBtn] = eventObjects(element);
     parent.style.height = 8 + 'px';
     collapseContainer.style.height = 0 + 'px';
@@ -62,7 +62,7 @@ function isCollapsed(className) {
     return collapsed;
 }
 
-function heightAfterEvent(palType) {
+function calcContentHeight(palType) {
     let settingsHeight = 51;
     let collapseHeight = 8 + 24;
     let colorHeight = isCollapsed('color-selector-collapse') ? collapseHeight :  454 + 24;
@@ -74,20 +74,47 @@ function heightAfterEvent(palType) {
     return calcHeight;
 }
 
+function calcAvailableWidth() {
+    let root = document.querySelector('#root');
+    let example = document.querySelector('.ex-body-container');
+    let exampleBtn = document.querySelector('#btn-hide-example');
+    let exampleWidth = example.offsetWidth;
+    exampleWidth = exampleBtn.textContent === 'show example page' ? 0 : exampleWidth
+    let availableWidth = root.offsetWidth - exampleWidth;
+    return availableWidth;
+}
 
-export function autoCollapse(palType, eventObj) {
+function calcAvailableHeight() {
     let mainContainer = document.querySelector('.main-app-container');
+    let availableHeight = mainContainer.offsetHeight;
+    return availableHeight;
+}
+
+function collapseAllNonactive(eventObj) {
     let containersClassNames = [
         'color-selector-collapse', 
         'conversions-collapse',
         'palettes-collapse'
     ];
     let collapseClassNames = containersClassNames.filter(name => name !== eventObj);
-    let availableWidth = window.screen.width;
-    let availableHeight = mainContainer.offsetHeight;
-    availableHeight = availableWidth > 1720 ? availableHeight * 2 : availableHeight;
-    let contentHeight = heightAfterEvent(palType);
-    if (contentHeight > availableHeight) {
-        collapseClassNames.forEach(element => collapse(element));
+    collapseClassNames.forEach(element => collapse(element));
+}
+
+export function autoCollapse(palType, eventObj) {
+    let avaWidth = calcAvailableWidth();
+    let avaHeight = calcAvailableHeight();
+    avaHeight = avaWidth > 1220 ? avaHeight * 2 : avaHeight;
+    let contentHeight = calcContentHeight(palType);
+    if (contentHeight > avaHeight) {
+        collapseAllNonactive(eventObj);
+    }
+}
+
+function handleWindowResize() {
+    let mainContainer = document.querySelector('.main-app-container');
+    if (window.innerWidth < 1080) {
+        mainContainer.style.width = 580 + 'px';
+    } else {
+        mainContainer.style.width = 1080 + 'px';
     }
 }

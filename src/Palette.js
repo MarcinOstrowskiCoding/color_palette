@@ -1,4 +1,5 @@
 import { paletteHues } from "./ColorSelector";
+import { autoCollapse } from "./Collapse";
 
 export function getHSL(arr){
     return `hsl(${arr[0]}, ${arr[1]}%, ${arr[2]}%)`
@@ -41,15 +42,18 @@ function showSelectedHueDot(e) {
     }
 }
 
-function passPaletteTypeToState(e, paletteTypes, setPalType) {
+function passPaletteTypeToState(e, paletteTypes, setPalType, palType) {
     paletteTypes.map((palette) => {
         if(e.target.value === palette.name) {
             return setPalType(palette);
         }
     });
+    let newPalette = {};
+    newPalette.name = e.target.value;
+    autoCollapse(newPalette, 'palettes-collapse');
 }
 
-function SelectPalType( {setPalType} ){
+function SelectPalType( {palType, setPalType} ){
     let paletteTypes = [
         {name: "monochromatic", hue: [0]},
         {name: "complementary", hue: [0, 180]},
@@ -58,10 +62,14 @@ function SelectPalType( {setPalType} ){
         {name: "neutral", hue: [0, 15, -15]}
     ];
     function handleInput(e){
-        passPaletteTypeToState(e, paletteTypes, setPalType)
-        hideAllHueDots()
+        passPaletteTypeToState(e, paletteTypes, setPalType, palType);
+        hideAllHueDots();
         showSelectedHueDot(e);
     }
+    // if (document.querySelector('.main-app-container')) {
+    //     autoCollapse(palType, 'palettes-collapse');
+    //     alert(palType.name);
+    // }
     return (
         <>
             <div className="select-pal-type">
@@ -163,11 +171,11 @@ function ModifyPalette({contrast, setContrast}){
     )
 };
 
-export function Palette({color, contrast, setContrast, palType, setPalType,
-                         showHidePalettes}){
+export function Palette({color, contrast, setContrast, palType, setPalType, showHidePalettes}){
     return (
         <div className="palette">
             <SelectPalType
+                palType={palType}
                 setPalType={setPalType}>               
             </SelectPalType>
             <DispPalette 
