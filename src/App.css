@@ -50,7 +50,7 @@
 .settings-container {
   display: flex;
   align-items: start;
-  margin: 0px 8px;
+  margin: 4px 8px;
 }
 
 .settings{
@@ -59,15 +59,6 @@
   gap: 8px;
   height: 30px;
   margin-left: auto;
-}
-
-@media (max-width: 1720px) {
-
-  .settings {
-    gap:2px;
-    margin: 0px 6px;
-    height: 24px;
-  }
 }
 
 .color-wheel {
@@ -143,8 +134,12 @@
 .color-selector-collapse,
 .palettes-collapse, 
 .conversions-collapse {
-  border: 5px groove hwb(0 28% 72%);
-  margin: 12px 0px;
+  /* border: 5px groove hwb(0 28% 72%); */
+  /* border: 2px solid hwb(0 28% 72%); */
+  border: 2px solid hsl(0, 0%, 34%);
+  box-shadow: 2px 2px 2px 1px hsl(0, 0%, 14%);
+  margin: 8px 0px 12px 0px;
+  padding: 4px 0px;
   position: relative;
   transition-duration: 1s;
 }
@@ -252,7 +247,7 @@
 }
 
 .conv-container .rgb {
-  width: 140px;
+  width: 144px;
 }
 
 .conv-container p {
@@ -318,7 +313,7 @@
 }
 
 .btn-hide-example {
-  width: 130px;
+  width: 136px;
 }
 
 
@@ -352,24 +347,24 @@ input[type=range]:focus {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
+  height: 21px;
+  width: 8px;
   border-radius: 3px;
-  background: #ffffff;
+  background: #a2a8a8;
   cursor: pointer;
-  margin-top: -14px; /* Need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  margin-top: -8px; /* Need to specify a margin in Chrome, but in Firefox it is automatic */
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 
 /* All the same stuff for Firefox */
 input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1px solid #000000;
   height: 20px;
   width: 6px;
   border-radius: 3px;
   background: #a2a8a8;
   cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
 
 /* All the same stuff for IE */
@@ -387,11 +382,11 @@ input[type=range]::-moz-range-thumb {
 
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 8.4px;
+  height: 8px;
   cursor: pointer;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
-  border-radius: 1.3px;
+  background: #4f4f4f;
+  border-radius: 1px;
   border: 0.2px solid #010101;
 }
 
@@ -405,7 +400,7 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   background: #4f4f4f;
-  border-radius: 1.3px;
+  border-radius: 1px;
   border: 0.2px solid #010101;
 }
 

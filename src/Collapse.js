@@ -134,24 +134,26 @@ export function changeLayoutOnResize(palType) {
     let avaWidth = calcAvailableWidth();
     let contentHeight = calcContentHeight(palType);
     if (avaWidth < 1080) {
-        mainContainer.style.width = 540 + 'px';
-        mainContainer.style.height = 88 + 'vh';
+        mainContainer.style.width = '540px';
+        mainContainer.style.height = '88vh';
         mainContainer.style.flexWrap = 'nowrap';
         settingsContainer.style.flexDirection = 'column';
-        settingsEle.style.gap = 2 + 'px';
-        settingsEle.style.height = 24 + 'px';
-        settingsEle.style.margin = 0 + 'px' + ' ' + 6 + 'px';
+        settingsContainer.style.margin = '12px 8px';
+        settingsEle.style.gap = '2px';
+        settingsEle.style.height = '24px';
+        settingsEle.style.margin = '0px 6px';
         if (contentHeight > avaHeight) {
             collapseAllNonactive('color-selector-collapse');
         }
     } else {
-        mainContainer.style.width = 1080 + 'px';
-        mainContainer.style.height = 90 + 'vh';
+        mainContainer.style.width = '1080px';
+        mainContainer.style.height = '90vh';
         mainContainer.style.flexWrap = 'wrap';
         settingsContainer.style.flexDirection = 'row';
-        settingsEle.style.gap = 8 + 'px';
-        settingsEle.style.height = 30 + 'px';
-        settingsEle.style.marginLeft = 'auto';
+        settingsContainer.style.margin = '4px 8px';
+        settingsEle.style.gap = '8px';
+        settingsEle.style.height = '30px';
+        settingsEle.style.margin = '0px 6px 0px auto';
         expandAll();
     }
 }
