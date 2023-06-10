@@ -1,5 +1,5 @@
 import { paletteHues } from "./ColorSelector";
-import { autoCollapse } from "./Collapse";
+import { autoCollapse, expand } from "./Collapse";
 
 export function getHSL(arr){
     return `hsl(${arr[0]}, ${arr[1]}%, ${arr[2]}%)`
@@ -50,7 +50,8 @@ function passPaletteTypeToState(e, paletteTypes, setPalType, palType) {
     });
     let newPalette = {};
     newPalette.name = e.target.value;
-    autoCollapse(newPalette, 'palettes-collapse');
+    autoCollapse('palettes-collapse', newPalette);
+    expand('palettes-collapse', newPalette);
 }
 
 function SelectPalType( {palType, setPalType} ){
@@ -66,10 +67,6 @@ function SelectPalType( {palType, setPalType} ){
         hideAllHueDots();
         showSelectedHueDot(e);
     }
-    // if (document.querySelector('.main-app-container')) {
-    //     autoCollapse(palType, 'palettes-collapse');
-    //     alert(palType.name);
-    // }
     return (
         <>
             <div className="select-pal-type">

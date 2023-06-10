@@ -12,15 +12,9 @@ export function CollapseBtn( {children, containerClass, palType} ) {
     function handleClick({containerClass}) {
         let collapseBtn = eventObjects(containerClass)[2];
         let isExpanded = collapseBtn.textContent === 'collapse' ? true : false;
-        let eventObject = containerClass;
-        isExpanded ? collapse(eventObject) : expand(eventObject);
-        autoCollapse(palType, eventObject);
-        // let contentHeight = calcContentHeight(palType);
-        // let avaHeight = calcAvailableHeight();
-        // if (contentHeight < avaHeight) {
-        //     changeLayoutOnResize(palType);
-        // }
-        // ************************************************<<<<
+        let className = containerClass;
+        isExpanded ? collapse(className) : expand(className, palType);
+        autoCollapse(className, palType);
     }
     return(
         <div className={containerClass}> 
@@ -35,32 +29,45 @@ export function CollapseBtn( {children, containerClass, palType} ) {
     )
 }
 
-function collapse(element) {
-    let [parent, collapseContainer, collapseBtn] = eventObjects(element);
-    parent.style.height = 8 + 'px';
-    collapseContainer.style.height = 0 + 'px';
-    collapseContainer.style.zIndex = -1;
+function collapse(className) {
+    let [parent, collapseContainer, collapseBtn] = eventObjects(className);
+    parent.style.height = '8px';
+    collapseContainer.style.height = '0px';
+    collapseContainer.style.opacity = '0';
     collapseBtn.textContent = '';
     collapseBtn.appendChild(document.createTextNode('expand'));
 }
 
-function expand(element) {
-    let [parent, collapseContainer, collapseBtn] = eventObjects(element);
-    parent.style.height = 'auto';
-    collapseContainer.style.height = 'auto';
-    collapseContainer.style.zIndex = 0;
+export function expand(className, palType) {
+    let [parent, collapseContainer, collapseBtn] = eventObjects(className);
+    let containerHeight = getCollapseContainerHeight(className, palType);
+    parent.style.height = `${containerHeight}px`;
+    let margins = 12;
+    collapseContainer.style.height = `${containerHeight - margins}px`;
+    collapseContainer.style.opacity = '1';
     collapseBtn.textContent = '';
     collapseBtn.appendChild(document.createTextNode('collapse'));
 }
 
 function paletteContainerHeight(palType) {
-    if (palType.name)
     if (palType.name === 'monochromatic') {
         return 255 + 14;
     } else if (palType.name === 'complementary') {
         return 387 + 14;
     } else {
         return 519 + 14;
+    }
+}
+
+function getCollapseContainerHeight(className, palType) {
+    if (className === 'color-selector-collapse') {
+        return 454;
+    } else if (className === 'conversions-collapse') {
+        return 254;
+    } else {
+        let margin = 14
+        let containerHeight = paletteContainerHeight(palType) - margin;
+        return containerHeight;
     }
 }
 
@@ -98,33 +105,33 @@ function calcAvailableHeight() {
     return availableHeight;
 }
 
-function collapseAllNonactive(eventObj) {
+function collapseAllNonactive(className) {
     let containersClassNames = [
         'color-selector-collapse', 
         'conversions-collapse',
         'palettes-collapse'
     ];
-    let collapseClassNames = containersClassNames.filter(name => name !== eventObj);
+    let collapseClassNames = containersClassNames.filter(name => name !== className);
     collapseClassNames.forEach(element => collapse(element));
 }
 
-export function autoCollapse(palType, eventObj) {
+export function autoCollapse(className, palType) {
     let avaWidth = calcAvailableWidth();
     let avaHeight = calcAvailableHeight();
     avaHeight = avaWidth > 1080 ? avaHeight * 2 : avaHeight;
     let contentHeight = calcContentHeight(palType);
     if (contentHeight > avaHeight) {
-        collapseAllNonactive(eventObj);
+        collapseAllNonactive(className);
     }
 }
 
-function expandAll() {
+function expandAll(palType) {
     let containersClassNames = [
         'color-selector-collapse', 
         'conversions-collapse',
         'palettes-collapse'
     ];
-    containersClassNames.forEach(element => expand(element));
+    containersClassNames.forEach(className => expand(className, palType));
 }
 
 export function changeLayoutOnResize(palType) {
@@ -155,7 +162,7 @@ export function changeLayoutOnResize(palType) {
         settingsEle.style.gap = '8px';
         settingsEle.style.height = '30px';
         settingsEle.style.margin = '0px 6px 0px auto';
-        expandAll();
+        expandAll(palType);
     }
 }
 

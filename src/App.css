@@ -134,15 +134,34 @@
 .color-selector-collapse,
 .palettes-collapse, 
 .conversions-collapse {
-  /* border: 5px groove hwb(0 28% 72%); */
-  /* border: 2px solid hwb(0 28% 72%); */
   border: 2px solid hsl(0, 0%, 34%);
   box-shadow: 2px 2px 2px 1px hsl(0, 0%, 14%);
   margin: 8px 0px 12px 0px;
   padding: 4px 0px;
   position: relative;
+  opacity: 1;
   transition-duration: 1s;
 }
+
+.color-selector-collapse{
+  height: 440px;
+}
+
+.collapse-container {
+  height: auto;
+  opacity: 1;
+  transition-duration: 1s;
+  overflow: hidden;
+}
+
+.color-selector-collapse .collapse-container {
+  height: 440px;
+}
+
+.collapse-container:active {
+  transition-duration: 0.9s;
+}
+
 
 .color-selector-collapse::before, 
 .palettes-collapse::before,

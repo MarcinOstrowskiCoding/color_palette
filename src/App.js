@@ -14,7 +14,7 @@ function App() {
   const [showHidePalettes, setSHPalettes] = useState('block');
   const [isMouseDown, setIsMouseDown ] = useState(false);
   useEffect(() => {
-    autoCollapse(palType, 'color-selector-collapse');
+    autoCollapse('color-selector-collapse', palType);
     changeLayoutOnResize(palType);
 }, [])
   function handleMouseDown() {
