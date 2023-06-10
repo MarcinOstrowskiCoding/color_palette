@@ -20,6 +20,7 @@ export function CollapseBtn( {children, containerClass, palType} ) {
         // if (contentHeight < avaHeight) {
         //     changeLayoutOnResize(palType);
         // }
+        // ************************************************<<<<
     }
     return(
         <div className={containerClass}> 
