@@ -3,7 +3,7 @@ import { changeLayoutOnResize, changeLayoutOnExampleHide } from "./Collapse";
 export function Settings( {color, contrast, palType, setColor, setContrast, setPalType, setSHPalettes, showHidePalettes} ){
     return (
         <div className="settings-container">
-            <p><span>dev</span> PALETTE TOOLS</p>
+            <p className="app-logo"><span>dev</span> PALETTE TOOLS</p>
             <div className="settings">
                 <HideExamplePage
                     palType={palType}>

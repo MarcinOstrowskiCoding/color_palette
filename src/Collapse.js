@@ -8,6 +8,7 @@ let settingsElement = undefined;
 let hideExampleText = undefined;
 let exampleContainer = undefined;
 let appContainer = undefined;
+let appLogo = undefined;
 
 function getLayoutElements(){
     mainContainer = document.querySelector('.main-app-container');
@@ -17,6 +18,7 @@ function getLayoutElements(){
     hideExampleText = hideExampleBtn.textContent;
     exampleContainer = document.querySelector('.ex-body-container');
     appContainer = document.querySelector('.App');
+    appLogo = document.querySelector('.app-logo')
 }
 
 function eventObjects(element) {
@@ -172,7 +174,14 @@ export function changeLayoutOnExampleHide(palType) {
         setTimeout(() => setTransitionPropTo('top'), 2000);
     } else {
         moveContentOutOffScreen();
-        setTimeout(() => setMainAppLayoutToOneColumn(palType), 380);
+        setTimeout(() => {
+            let avaWidth = calcAvailableWidth();
+            if (avaWidth < 1680) {
+                setMainAppLayoutToOneColumn(palType);
+            } else {
+                setMainAppLayoutToTwoColumns(palType);
+            }
+        }, 380);
         setTimeout(() => moveContentBackOnScreen(), 600);
     }
 }
@@ -180,7 +189,8 @@ export function changeLayoutOnExampleHide(palType) {
 function moveContentOutOffScreen() {
     mainContainer.style.top = '150vh';
     exampleContainer.style.top = '150vh';
-    // mainContainer.style.transitionProperty = 'all';
+    appLogo.style.right = '100vw';
+    settingsElement.style.right = '100vw';
     mainContainer.style.transitionProperty = 'top';
     appContainer.style.backgroundColor = 'hsl(220, 13%, 14%)';
 }
@@ -188,10 +198,10 @@ function moveContentOutOffScreen() {
 function moveContentBackOnScreen() {
     mainContainer.style.top = '0vh';
     exampleContainer.style.top = '0vh';
-    // mainContainer.style.transitionProperty = 'all';
+    appLogo.style.right = '0vw';
+    settingsElement.style.right = '0vw';
     mainContainer.style.transitionProperty = 'top';
     appContainer.style.backgroundColor = '#282c34';
-    //#282c34
 }
 
 function setTransitionPropTo(propValue) {
