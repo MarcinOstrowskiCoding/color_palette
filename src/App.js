@@ -5,7 +5,7 @@ import { Palette } from './Palette';
 import { ExampleWebApp } from './Example';
 import { Settings } from './Settings';
 import { Conversions } from './Conversions';
-import { CollapseBtn, autoCollapse, NewComponent, changeLayoutOnResize } from './Collapse';
+import { CollapseBtn, autoCollapse, ListenToResize, changeLayoutOnResize } from './Collapse';
 
 function App() {
   const [color, setColor] = useState([0, 50, 50]);
@@ -28,9 +28,9 @@ function App() {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}>
       <div>
-        <NewComponent
+        <ListenToResize
           palType={palType}>
-        </NewComponent>
+        </ListenToResize>
         <Settings 
           color={color}
           contrast={contrast}

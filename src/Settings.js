@@ -1,4 +1,4 @@
-import { changeLayoutOnResize } from "./Collapse";
+import { changeLayoutOnResize, changeLayoutOnExampleHide } from "./Collapse";
 
 export function Settings( {color, contrast, palType, setColor, setContrast, setPalType, setSHPalettes, showHidePalettes} ){
     return (
@@ -77,16 +77,19 @@ function HideExamplePage( {palType} ) {
     function handleClick() {
         let example = document.querySelector('#ex-body');
         let btn = document.querySelector('#btn-hide-example');
-        if (example.style.display === 'none') {
-            example.style.display = 'flex';
-            btn.textContent = '';
-            btn.appendChild(document.createTextNode('hide example page'));
-        } else {
-            example.style.display = 'none';
-            btn.textContent = '';
-            btn.appendChild(document.createTextNode('show example page'));
-        }
-        changeLayoutOnResize(palType);
+        changeLayoutOnExampleHide(palType);
+        setTimeout(() => {
+            if (example.style.display === 'none') {
+                example.style.display = 'flex';
+                btn.textContent = '';
+                btn.appendChild(document.createTextNode('hide example page'));
+            } else {
+                example.style.display = 'none';
+                btn.textContent = '';
+                btn.appendChild(document.createTextNode('show example page'));
+        }}, 500);
+
+        // changeLayoutOnResize(palType);
     }
     return (
         <button

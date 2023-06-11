@@ -143,6 +143,27 @@
   transition-duration: 1s;
 }
 
+/********************** layout transitions ***********************/
+.App {
+  transition-property: background-color;
+  transition-duration: 0.8s;
+}
+
+.main-app-container {
+  position: relative;
+  top: 0vh;
+  transition-property: top;
+  transition-delay: 0.1s;
+  transition-duration: 0.8s;
+}
+
+.ex-body-container{
+  position: relative;
+  top: 0vh;
+  transition-property: top;
+  transition-duration: 0.8s;
+}
+
 .color-selector-collapse{
   height: 440px;
 }
@@ -161,7 +182,7 @@
 .collapse-container:active {
   transition-duration: 0.9s;
 }
-
+/************************************************************/
 
 .color-selector-collapse::before, 
 .palettes-collapse::before,

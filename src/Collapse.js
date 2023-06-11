@@ -1,5 +1,24 @@
 import { useEffect, useState } from "react";
 
+// to figure out in future: how to declare global variables that
+// refer to elements when those elements are still not renedered by react
+let mainContainer = undefined;
+let settingsContainer = undefined;
+let settingsElement = undefined;
+let hideExampleText = undefined;
+let exampleContainer = undefined;
+let appContainer = undefined;
+
+function getLayoutElements(){
+    mainContainer = document.querySelector('.main-app-container');
+    settingsContainer = document.querySelector('.settings-container');
+    settingsElement = document.querySelector('.settings');
+    let hideExampleBtn = document.querySelector('.btn-hide-example');
+    hideExampleText = hideExampleBtn.textContent;
+    exampleContainer = document.querySelector('.ex-body-container');
+    appContainer = document.querySelector('.App');
+}
+
 function eventObjects(element) {
     let parent = document.querySelector('.' + element);
     let collapseContainer = parent.querySelector('.collapse-container');
@@ -125,7 +144,7 @@ export function autoCollapse(className, palType) {
     }
 }
 
-function expandAll(palType) {
+export function expandAll(palType) {
     let containersClassNames = [
         'color-selector-collapse', 
         'conversions-collapse',
@@ -135,38 +154,79 @@ function expandAll(palType) {
 }
 
 export function changeLayoutOnResize(palType) {
-    let mainContainer = document.querySelector('.main-app-container');
-    let settingsContainer = document.querySelector('.settings-container');
-    let settingsEle = document.querySelector('.settings');
-    let avaHeight = calcAvailableHeight();
+    getLayoutElements();
     let avaWidth = calcAvailableWidth();
-    let contentHeight = calcContentHeight(palType);
     if (avaWidth < 1080) {
-        mainContainer.style.width = '540px';
-        mainContainer.style.height = '88vh';
-        mainContainer.style.flexWrap = 'nowrap';
-        settingsContainer.style.flexDirection = 'column';
-        settingsContainer.style.margin = '12px 8px';
-        settingsEle.style.gap = '2px';
-        settingsEle.style.height = '24px';
-        settingsEle.style.margin = '0px 6px';
-        if (contentHeight > avaHeight) {
-            collapseAllNonactive('color-selector-collapse');
-        }
+        setMainAppLayoutToOneColumn(palType);
     } else {
-        mainContainer.style.width = '1080px';
-        mainContainer.style.height = '90vh';
-        mainContainer.style.flexWrap = 'wrap';
-        settingsContainer.style.flexDirection = 'row';
-        settingsContainer.style.margin = '4px 8px';
-        settingsEle.style.gap = '8px';
-        settingsEle.style.height = '30px';
-        settingsEle.style.margin = '0px 6px 0px auto';
-        expandAll(palType);
+        setMainAppLayoutToTwoColumns(palType);
     }
 }
 
-export function NewComponent( {palType} ) {
+export function changeLayoutOnExampleHide(palType) {
+    getLayoutElements();
+    if (hideExampleText === 'hide example page') {
+        moveContentOutOffScreen();
+        setTimeout(() => setMainAppLayoutToTwoColumns(palType), 380);
+        setTimeout(() => moveContentBackOnScreen(), 600);
+        setTimeout(() => setTransitionPropTo('top'), 2000);
+    } else {
+        moveContentOutOffScreen();
+        setTimeout(() => setMainAppLayoutToOneColumn(palType), 380);
+        setTimeout(() => moveContentBackOnScreen(), 600);
+    }
+}
+
+function moveContentOutOffScreen() {
+    mainContainer.style.top = '150vh';
+    exampleContainer.style.top = '150vh';
+    // mainContainer.style.transitionProperty = 'all';
+    mainContainer.style.transitionProperty = 'top';
+    appContainer.style.backgroundColor = 'hsl(220, 13%, 14%)';
+}
+
+function moveContentBackOnScreen() {
+    mainContainer.style.top = '0vh';
+    exampleContainer.style.top = '0vh';
+    // mainContainer.style.transitionProperty = 'all';
+    mainContainer.style.transitionProperty = 'top';
+    appContainer.style.backgroundColor = '#282c34';
+    //#282c34
+}
+
+function setTransitionPropTo(propValue) {
+    mainContainer.style.transitionProperty = propValue;
+}
+
+function setMainAppLayoutToTwoColumns(palType) {
+    mainContainer.style.width = '1080px';
+    mainContainer.style.height = '90vh';
+    mainContainer.style.flexWrap = 'wrap';
+    settingsContainer.style.flexDirection = 'row';
+    settingsContainer.style.margin = '4px 8px';
+    settingsElement.style.gap = '8px';
+    settingsElement.style.height = '30px';
+    settingsElement.style.margin = '0px 6px 0px auto';
+    expandAll(palType);
+}
+
+function setMainAppLayoutToOneColumn(palType) {
+    let avaHeight = calcAvailableHeight();
+    let contentHeight = calcContentHeight(palType);
+    mainContainer.style.width = '540px';
+    mainContainer.style.height = '88vh';
+    mainContainer.style.flexWrap = 'nowrap';
+    settingsContainer.style.flexDirection = 'column';
+    settingsContainer.style.margin = '12px 8px';
+    settingsElement.style.gap = '2px';
+    settingsElement.style.height = '24px';
+    settingsElement.style.margin = '0px 6px';
+    if (contentHeight > avaHeight) {
+        collapseAllNonactive('color-selector-collapse');
+    };
+}
+
+export function ListenToResize( {palType} ) {
     const [dimensions, setDimensions] = useState({
         height: window.innerHeight,
         width: window.innerWidth
