@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 // to figure out in future: how to declare global variables that
 // refer to elements when those elements are still not renedered by react
 let mainContainer = undefined;
@@ -7,8 +6,10 @@ let settingsContainer = undefined;
 let settingsElement = undefined;
 let hideExampleText = undefined;
 let exampleContainer = undefined;
-let appContainer = undefined;
+let appContainer = undefined; //done
 let appLogo = undefined;
+
+
 
 function getLayoutElements(){
     mainContainer = document.querySelector('.main-app-container');

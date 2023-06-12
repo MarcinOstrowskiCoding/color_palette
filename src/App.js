@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ColorSelector } from './ColorSelector';
 import { Palette } from './Palette';
 import { ExampleWebApp } from './Example';
@@ -8,6 +8,7 @@ import { Conversions } from './Conversions';
 import { CollapseBtn, autoCollapse, ListenToResize, changeLayoutOnResize } from './Collapse';
 
 function App() {
+  const appContainerRef = useRef(null);
   const [color, setColor] = useState([0, 50, 50]);
   const [contrast, setContrast] = useState(80);
   const [palType, setPalType] = useState({name: 'monochromatic', hue: [0]});
@@ -24,7 +25,9 @@ function App() {
     setIsMouseDown(false);
   }
   return (
-    <div className='App'
+    <div 
+      ref={appContainerRef}
+      className='App'
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}>
       <div>
