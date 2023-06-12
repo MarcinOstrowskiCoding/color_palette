@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
-// to figure out in future: how to declare global variables that
-// refer to elements when those elements are still not renedered by react
-let mainContainer = undefined;
-let settingsContainer = undefined;
-let settingsElement = undefined;
-let hideExampleText = undefined;
-let exampleContainer = undefined;
-let appContainer = undefined; //done
-let appLogo = undefined;
 
+let mainContainer;
+let settingsContainer;
+let settingsElement;
+let exampleContainer;
+let appContainer;
+let appLogo;
 
+window.onload = getLayoutElements;
 
 function getLayoutElements(){
     mainContainer = document.querySelector('.main-app-container');
     settingsContainer = document.querySelector('.settings-container');
     settingsElement = document.querySelector('.settings');
-    let hideExampleBtn = document.querySelector('.btn-hide-example');
-    hideExampleText = hideExampleBtn.textContent;
     exampleContainer = document.querySelector('.ex-body-container');
     appContainer = document.querySelector('.App');
     appLogo = document.querySelector('.app-logo')
@@ -157,7 +153,6 @@ export function expandAll(palType) {
 }
 
 export function changeLayoutOnResize(palType) {
-    getLayoutElements();
     let avaWidth = calcAvailableWidth();
     if (avaWidth < 1080) {
         setMainAppLayoutToOneColumn(palType);
@@ -167,7 +162,8 @@ export function changeLayoutOnResize(palType) {
 }
 
 export function changeLayoutOnExampleHide(palType) {
-    getLayoutElements();
+    let hideExampleBtn = document.querySelector('.btn-hide-example');
+    let hideExampleText = hideExampleBtn.textContent;
     if (hideExampleText === 'hide example page') {
         moveContentOutOffScreen();
         setTimeout(() => setMainAppLayoutToTwoColumns(palType), 380);
